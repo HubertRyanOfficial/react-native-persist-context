@@ -1,5 +1,6 @@
-![React native persist context library](https://imgur.com/y31GEJn.jpg)
-<br />
+<p align="center">
+  <img src="https://imgur.com/y31GEJn.jpg" width="600px" title="Whatsapp">
+</p>
 <br />
 
 # react-native-persist-context
