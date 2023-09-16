@@ -5,17 +5,49 @@ A library to help your context being persisted in your react native apps
 ## Installation
 
 ```sh
-npm install react-native-persist-context
+npm install react-native-persist-context @react-native-async-storage/async-storage
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-persist-context';
+import usePersist from 'react-native-persist-context';
 
 // ...
 
-const result = await multiply(3, 7);
+const AppContext = createContext({} as InformationContextType);
+
+export default function AppProvider({children}) {
+    const [data, setData, clear] = usePersist(
+        'userData',
+        {
+            user: {
+                name: 'Hubert Ryan',
+                twitter: 'hubertryanoff',
+                tapedin: 'hubertryan'
+            }
+        }
+    );
+
+    const handleUserData = (newUserData) => {
+        setData({
+            ...data,
+            user: newUserData
+        });
+    };
+
+    return (
+        <AppContext.Provider
+            value={{
+                ...data,
+                handleUserData
+            }}
+        >
+            {children}
+        </AppContext.Provider>
+  );
+}
+
 ```
 
 ## Contributing

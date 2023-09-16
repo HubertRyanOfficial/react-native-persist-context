@@ -1,19 +1,38 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-persist-context';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
+import InformationProvider, {
+  useInformation,
+} from './contexts/InformationsContext';
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+function App() {
+  const {
+    libraryVersion,
+    handleInformationLibraryVersion,
+    handleClearInformations,
+  } = useInformation();
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const handleChangeLibraryVersion = () => {
+    handleInformationLibraryVersion('1.0.0');
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <TouchableWithoutFeedback onPress={handleChangeLibraryVersion}>
+        <Text style={styles.text}>RN Persist Context - {libraryVersion}</Text>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={handleClearInformations}>
+        <Text style={styles.text}>Clear</Text>
+      </TouchableWithoutFeedback>
     </View>
+  );
+}
+
+export default function AppWrapper() {
+  return (
+    <InformationProvider>
+      <App />
+    </InformationProvider>
   );
 }
 
@@ -23,9 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  text: {
+    fontSize: 30,
   },
 });
