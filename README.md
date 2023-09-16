@@ -1,3 +1,7 @@
+<img src="https://imgur.com/y31GEJn.jpg" align="center" />
+<br />
+<br />
+
 # react-native-persist-context
 
 A library to help your context being persisted in your react native apps
