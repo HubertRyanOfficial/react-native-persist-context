@@ -127,7 +127,7 @@ function Settings() {
 import React, { createContext, useContext } from 'react';
 import usePersist from 'react-native-persist-context'; // Import the usePersist hook
 
-// Define an interface for the user data format
+// Define a type for the user data format
 type AppContextProps = {
   name: string;
   twitter: string;
@@ -170,7 +170,7 @@ export default function AppProvider({ children }: AppProviderProps) {
 export const useApp = () => useContext(AppContext);
 ```
 
-In this example, we start by defining an interface UserData that describes the format of user data with fields name, twitter, and tapedin, all typed as strings.
+In this example, we start by defining a type AppContextProps that describes the format of user data with fields name, twitter, and tapedin, all typed as strings.
 
 Next, we use the usePersist hook with TypeScript, providing the appropriate typing as <AppContextProps>. This tells TypeScript that userData should follow the structure defined in the UserData interface, ensuring that fields and types are checked at compile time.
 
